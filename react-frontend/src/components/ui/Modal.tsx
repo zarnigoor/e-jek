@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";
+// import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { FiX } from "react-icons/fi";
 
 interface ModalProps {

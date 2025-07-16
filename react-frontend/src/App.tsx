@@ -15,7 +15,8 @@ import ApplicationsList from './pages/admin/ApplicationsList';
 import UsersList from './pages/admin/UsersList';
 import CreateUser from './pages/admin/CreateUser';
 
-const GuestRoute = ({ children }: { children: JSX.Element }) => {
+// const GuestRoute = ({ children }: { children: JSX.Element }) => {
+const GuestRoute = ({ children }: { children: React.ReactElement }) => {
   const { user, loading } = useAuth();
   if (loading) return <div className="flex items-center justify-center h-screen"><Spinner /></div>;
   return user ? <Navigate to={user.role === 'admin' ? '/admin' : '/user'} /> : children;
@@ -37,11 +38,13 @@ const ProtectedRoute = ({ role }: { role: 'user' | 'admin' }) => {
   }
 
   return (
-    <DashboardLayout>
-      <Outlet />
-    </DashboardLayout>
+    // <DashboardLayout>
+    //   <Outlet />
+    // </DashboardLayout>
+    <DashboardLayout children={<Outlet />} />
   );
 };
+
 
 function App() {
   return (
@@ -73,3 +76,4 @@ function App() {
 }
 
 export default App;
+
