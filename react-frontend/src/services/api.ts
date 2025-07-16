@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Backend manzili
+  baseURL: import.meta.env.VITE_API_URL || 'https://e-jek-2.onrender.com/api',
   withCredentials: true, // Cookie'larni so'rovlar bilan birga yuborish
 });
 
