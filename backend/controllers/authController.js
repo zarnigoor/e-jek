@@ -22,7 +22,7 @@ export const login = async (req, res) => {
 
     if (user && (await user.matchPassword(password))) {
       const token = signToken({ id: user._id, role: user.role });
-      res.cookie('token', token, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 });
+      res.cookie('token', token, { httpOnly: true, secure:true, sameSite:"none",maxAge: 30 * 24 * 60 * 60 * 1000 });
       res.json({
         _id: user._id,
         login: user.login,
@@ -39,6 +39,8 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   res.cookie('token', '', {
     httpOnly: true,
+    // secure:true,
+    // sameSite:"none",
     expires: new Date(0),
   });
   res.status(200).json({ message: 'Logged out successfully' });
